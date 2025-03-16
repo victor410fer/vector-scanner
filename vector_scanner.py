@@ -72,7 +72,7 @@ def social_media_check(number):
         except:
             pass
 
-if name == "main":
+if __name__ == "__main__":
     legal_confirmation()
     
     parser = argparse.ArgumentParser()
