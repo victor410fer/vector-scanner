@@ -1,5 +1,4 @@
-**Updated Python Code (vector_scanner.py):**
-`python
+python
 """
 Vector Scanner v1.0 - Ethical Digital Forensics Tool
 Created by Victor - https://github.com/victor410fer
