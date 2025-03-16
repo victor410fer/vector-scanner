@@ -20,8 +20,8 @@ BANNER = """
 def legal_confirmation():
     print(BANNER)
     print("\n[!] LEGAL COMPLIANCE REQUIRED [!]")
-    confirm = input("Do you have written consent for this scan? (yes/no): ").lower()
-    if confirm != 'yes':
+    confirm = input("Do you have written consent for this scan? (yes/no): ").strip().lower()
+if confirm not in ('yes', 'y'):
         print("\n[!] Scan aborted - Consent verification failed")
         exit()
     print("\n[!] Activity will be logged - Use responsibly\n")
