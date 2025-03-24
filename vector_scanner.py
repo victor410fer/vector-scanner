@@ -24,8 +24,12 @@ def legal_confirmation():
 if confirm not in ('yes', 'y'):
         print("\n[!] Scan aborted - Consent verification failed")
         exit()
-    print("\n[!] Activity will be logged - Use responsibly\n")
-    sleep(2)
+    def some_function():
+
+
+     
+      print("\n[!] Activity will be logged - Use responsibility\n")
+sleep(2)
 
 def load_config():
     try:
