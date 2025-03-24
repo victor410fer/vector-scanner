@@ -18,28 +18,30 @@ BANNER = """
 """
 
 def legal_confirmation():
-    print(BANNER)
-    print("\n[!] LEGAL COMPLIANCE REQUIRED [!]")
-    confirm = input("Do you have written consent for this scan? (yes/no): ").strip().lower()
-if confirm not in ('yes', 'y'):
-        print("\n[!] Scan aborted - Consent verification failed")
-        exit()
-    def load_config():
-    try:
-        with open('config.json') as f:
-            return json.load(f)
-    except:
-        print("[!] Missing config.json - See installation guide")
-        exit()
 
-def ethical_scan(number):
-    config = load_config()
-    
-    # Rate limiting
-    sleep(5)
-    
-    # Numverify API call
-    try:
+ 21    print(BANNER)
+22    print("\n[!] LEGAL COMPLIANCE REQUIRED")
+23    confirm = input("Do you have written consent? (yes/no): ").lower()
+24    if confirm not in ('yes', 'y'):  # Added "if"
+25        print("\n[!] Scan aborted - Consent required")
+26        exit()
+27
+28    def load_config():  # Properly unindented
+29        try:
+30            with open('config.json') as f:
+31                return json.load(f)
+32        except:
+33            print("[!] Missing config.json - Setup required")
+34            exit()
+35
+36    def ethical_scan(number):  # Added "def"
+37        config = load_config()
+38
+39        # Rate limiting
+40        sleep(5)
+41
+42        # Numverify API call
+43        try:
         response = requests.get(
             f"http://apilayer.net/api/validate?access_key={config['NUMVERIFY_API_KEY']}&number={number}"
         )
