@@ -27,7 +27,6 @@ def legal_confirmation():
        exit()
 
    def load_config():  
-    # Properly unindented
        try:
            with open('config.json') as f:
                return json.load(f)
