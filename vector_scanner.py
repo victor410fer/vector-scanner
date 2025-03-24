@@ -26,7 +26,8 @@ def legal_confirmation():
        print("\n[!] Scan aborted - Consent required")
        exit()
 
-   def load_config():  # Properly unindented
+   def load_config():  
+    # Properly unindented
        try:
            with open('config.json') as f:
                return json.load(f)
