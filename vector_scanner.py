@@ -24,14 +24,7 @@ def legal_confirmation():
 if confirm not in ('yes', 'y'):
         print("\n[!] Scan aborted - Consent verification failed")
         exit()
-    def some_function():
-
-
-     
-      print("\n[!] Activity will be logged - Use responsibility\n")
-sleep(2)
-
-def load_config():
+    def load_config():
     try:
         with open('config.json') as f:
             return json.load(f)
