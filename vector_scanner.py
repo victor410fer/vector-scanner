@@ -18,29 +18,28 @@ BANNER = """
 """
 
 def legal_confirmation():
-
     print(BANNER)
     print("\n[!] LEGAL COMPLIANCE REQUIRED")
     confirm = input("Do you have written consent? (yes/no): ").lower()
-    if confirm not in ('yes', 'y'):  # Added "if"
-       print("\n[!] Scan aborted - Consent required")
-       exit()
+    if confirm not in ('yes', 'y'):
+        print("\n[!] Scan aborted - Consent required")
+        exit()
 
-   def load_config():  
-       try:
-           with open('config.json') as f:
-               return json.load(f)
-       except:
-           print("[!] Missing config.json - Setup required")
-           exit()
+def load_config():
+    try:
+        with open('config.json') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print("[!] Missing config.json - Setup required")
+        exit()
 
-    def ethical_scan(number):  # Added "def"
-        config = load_config()
+def ethical_scan(number):
+    config = load_config()
 
-       # Rate limiting
-       sleep(5)
-# Numverify API call
-      try:
+    # Rate limiting
+    sleep(5)
+    # Numverify API call
+    try:
         response = requests.get(
             f"http://apilayer.net/api/validate?access_key={config['NUMVERIFY_API_KEY']}&number={number}"
         )
@@ -52,7 +51,7 @@ def legal_confirmation():
         print(f"Country: {data.get('country_name')}")
         print(f"Carrier: {data.get('carrier')}")
         
-    except Exception as e:
+    except requests.RequestException as e:
         print(f"API Error: {e}")
 
 def social_media_check(number):
@@ -67,7 +66,7 @@ def social_media_check(number):
         try:
             if requests.get(url).status_code == 200:
                 print(f"{name}: Profile exists (manual verification required)")
-        except:
+        except requests.RequestException:
             pass
 
 if __name__ == "__main__":
