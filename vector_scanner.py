@@ -1,12 +1,21 @@
-"""
-Vector Scanner v1.0 - Ethical Digital Forensics Tool
-Created by Victor - https://github.com/victor410fer
-"""
 import json
 import requests
 import argparse
 from time import sleep
 import webbrowser
+
+# Function to load the configuration file
+def load_config(file_path):
+    with open(file_path, 'r') as config_file:
+        config = json.load(config_file)
+    return config
+
+# Load the configuration
+config = load_config('config.json')
+
+# Use the configuration parameters
+API_KEY = config['api_key']
+API_URL = config['api_url']
 
 BANNER = """
 ██╗   ██╗███████╗ ██████╗████████╗ ██████╗ ██████╗ 
@@ -16,9 +25,6 @@ BANNER = """
  ╚████╔╝ ███████╗╚██████╗   ██║   ╚██████╔╝██║  ██║
   ╚═══╝  ╚══════╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
 """
-
-API_KEY = "3888b416a1ebb4b7f456787695992b8a"
-API_URL = "http://apilayer.net/api/validate"
 
 def legal_confirmation():
     print(BANNER)
