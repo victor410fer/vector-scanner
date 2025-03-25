@@ -48,6 +48,9 @@ def ethical_scan(number):
     if response.status_code == 200:
         data = response.json()
         
+        # Print the entire API response for debugging
+        print("API Response:", data)
+        
         print("\n[+] Validated Information:")
         print(f"Number: {data.get('number')}")
         print(f"Valid: {data.get('valid')}")
@@ -55,7 +58,7 @@ def ethical_scan(number):
         print(f"Carrier: {data.get('carrier')}")
     else:
         print(f"\n[!] Failed to validate number. Status Code: {response.status_code}")
-
+        
 def social_media_check(number):
     print("\n[+] Public Profile Check:")
     platforms = {
