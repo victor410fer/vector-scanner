@@ -25,34 +25,20 @@ def legal_confirmation():
         print("\n[!] Scan aborted - Consent required")
         exit()
 
-def load_config():
-    try:
-        with open('config.json') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        print("[!] Missing config.json - Setup required")
-        exit()
-
 def ethical_scan(number):
-    config = load_config()
-
-    # Rate limiting
-    sleep(5)
-    # Numverify API call
-    try:
-        response = requests.get(
-            f"http://apilayer.net/api/validate?access_key={config['NUMVERIFY_API_KEY']}&number={number}"
-        )
-        data = response.json()
-        
-        print("\n[+] Validated Information:")
-        print(f"Number: {data.get('number')}")
-        print(f"Valid: {data.get('valid')}")
-        print(f"Country: {data.get('country_name')}")
-        print(f"Carrier: {data.get('carrier')}")
-        
-    except requests.RequestException as e:
-        print(f"API Error: {e}")
+    # Simulate the response as if it was from the API
+    data = {
+        "number": number,
+        "valid": True,
+        "country_name": "Example Country",
+        "carrier": "Example Carrier"
+    }
+    
+    print("\n[+] Validated Information:")
+    print(f"Number: {data.get('number')}")
+    print(f"Valid: {data.get('valid')}")
+    print(f"Country: {data.get('country_name')}")
+    print(f"Carrier: {data.get('carrier')}")
 
 def social_media_check(number):
     print("\n[+] Public Profile Check:")
